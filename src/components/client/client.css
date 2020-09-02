@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
+.chat-page {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 20%;
+    background-color: #dfe6e9;
+    text-transform: uppercase;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.contain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.display-section {
+    padding: 4rem;
+    padding-right: 30%;
+    padding-left: 30%;
+    flex: 0 0 85%;
+    overflow-y: scroll;
+    
+}
+
+.send-section {
+    flex: 1;
+    background-color: #dfe6e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-contain {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-input {
+    flex: 0 0 80%;
+    margin-left: 5%;
+}
+
+.form-send {
+    /* flex: 1; */
+    margin-right: 5%;
+}
+
+.wrap-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30vh;
+}
+
+.head-data {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.active-users {
+    margin-bottom: auto;
+    /* width: 100%; */
+}
+
+.actual-image {
+    width: 100%;
+}
+
+.active-name {
+    width: 8rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
