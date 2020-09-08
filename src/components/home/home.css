@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* display: inline-block; */
+}
+
+.navbar {
+    display: inline-block;
+    height: 6vh;
+    background-color: orangered;
+}
+
+.below-container {
+    flex: 1;
+    background-color: #d8b490;
+}
+
+.complete-wrapper {
+    height: 100vh;
+    /* background-color: orangered; */
+    display: flex;
+    flex-direction: column;
+}

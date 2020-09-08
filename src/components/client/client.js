@@ -8,11 +8,15 @@ import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import FaceIcon from "@material-ui/icons/Face";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import LockIcon from "@material-ui/icons/Lock";
 import Chat from "./chat";
 import axios from "axios";
 import headers from "./headers";
+import "../home/home.css";
+import Loader from "../loader";
 
-const socket = socketIOClient("https://sgbtech96-chat-server.herokuapp.com/");
+let socket;
 class Client extends Component {
     constructor(props) {
         super(props);
@@ -20,8 +24,11 @@ class Client extends Component {
         this.state = {
             text: "",
             allMessages: [],
-            roomId: props.Room,
+            roomId: localStorage.getItem("roomId"),
             activeUsers: [],
+            username: localStorage.getItem("username"),
+            loading: true,
+            auth: true,
         };
         // if(window.performance) {
         //     if(performance.navigation.type == 1) {
@@ -34,7 +41,8 @@ class Client extends Component {
     }
 
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+        if (this.messagesEnd)
+            this.messagesEnd.scrollIntoView({ behavior: "smooth" });
     };
 
     componentDidUpdate() {
@@ -42,24 +50,52 @@ class Client extends Component {
     }
 
     async componentDidMount() {
+        socket = socketIOClient("http://localhost:5000/");
+        console.log("did mount");
         socket.on("connect", async () => {
+            console.log("hello socket");
             socket.emit("join", {
-                username: localStorage.phno,
+                username: this.state.username,
                 room: this.state.roomId,
             });
             const res = await axios.get(
-                `https://sgbtech96-chat-server.herokuapp.com/chats/${this.state.roomId}`
+                `http://localhost:5000/chats/${this.state.roomId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "authToken"
+                        )}`,
+                    },
+                }
             );
-            console.log("hello");
-            if (!res.data) return;
+            console.log(res.data);
+            if (res.data.error) {
+                this.setState({
+                    loading: false,
+                    auth: false,
+                });
+                return;
+            }
+            if (res.data.chats.length === 0) {
+                this.setState({
+                    loading: false,
+                    auth: true,
+                });
+                return;
+            }
             this.setState(
                 {
                     allMessages: res.data.chats,
                 },
                 () => {
                     console.log(this.state.allMessages);
+                    this.setState({
+                        loading: false,
+                        auth: true,
+                    });
                 }
             );
+            console.log(this.state.allMessages);
             this.scrollToBottom();
         });
         socket.on("newMessage", (message) => {
@@ -93,7 +129,7 @@ class Client extends Component {
             {
                 text: this.state.text,
                 room: this.state.roomId,
-                username: localStorage.phno,
+                username: this.state.username,
             },
             () => {
                 console.log("callback check");
@@ -110,65 +146,89 @@ class Client extends Component {
     }
 
     render() {
-        const { allMessages, activeUsers } = this.state;
-        return (
-            <div className="chat-page">
-                <div className="sidebar">
-                    <div className="sidebar-text">Active</div>
-                    <div className="sidebar-icon">
-                        <PeopleAltIcon fontSize="large" />
-                    </div>
-                    {/* <div className="active-users">
+        const {
+            allMessages,
+            activeUsers,
+            error,
+            roomId,
+            username,
+        } = this.state;
+        if (!this.state.loading)
+            return this.state.auth === true ? (
+                <div className="chat-page below-container">
+                    <div className="sidebar">
+                        <div className="sidebar-text">
+                            <div className="sidebar-icon">
+                                <AccountCircle fontSize="large" />
+                            </div>
+                            {roomId.replace(username, "")}
+                        </div>
+                        <div className="sidebar-msg">
+                            <div>
+                                <LockIcon />
+                            </div>
+                            <div className="sidebar-msg-text">
+                                This communication is end-to-end encrypted
+                            </div>
+                        </div>
+                        <div className="extra-info">
+                            Press ENTER key to send
+                        </div>
+                        {/* <div className="active-users">
                         {activeUsers.map((user) => <div><Chip avatar={user && <Avatar>{user.username[0]}</Avatar>} label={<div className="active-name">{user.username}</div>} /></div>)}
                     </div> */}
-                    <div className="sidebar-image">
-                        <img
-                            className="actual-image"
-                            src="https://cdn3.iconfinder.com/data/icons/vector-robots-set-concept-in-blue-color-style/1772/robot_questions_answers_issues_problem_solving_consultant_consultation-512.png"
-                        />
+                        <div className="sidebar-image">
+                            <img
+                                className="actual-image"
+                                src="https://us.123rf.com/450wm/topvectors/topvectors1706/topvectors170600696/80957941-stock-vector-smiling-businessman-and-businesswoman-having-meeting-in-office-vector-illustration-isolated-on-a-whi.jpg?ver=6"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="contain">
-                    <div className="display-section">
-                        {allMessages.map((msg) => (
-                            <Chat key={msg.createdAt} message={msg} />
-                        ))}
-                        <div
-                            style={{ float: "left", clear: "both" }}
-                            ref={(el) => {
-                                this.messagesEnd = el;
-                            }}
-                        ></div>
-                    </div>
-                    <div className="send-section">
-                        <div className="form-contain">
-                            <div className="form-input">
-                                <TextField
-                                    value={this.state.text}
-                                    name="text"
-                                    label="Message"
-                                    variant="outlined"
-                                    required={true}
-                                    onChange={this.handleChange}
-                                    placeholder="Type here"
-                                    autoFocus={true}
-                                    fullWidth={true}
-                                    inputRef={this.textInput}
-                                    onKeyPress={(event) => {
-                                        if (event.charCode === 13) {
-                                            this.handleSend();
-                                        }
-                                    }}
-                                />
-                            </div>
-                            <div className="form-send">
-                                <SendButton handleSend={this.handleSend} />
+                    <div className="contain">
+                        <div className="display-section">
+                            {allMessages.map((msg) => (
+                                <Chat key={msg.createdAt} message={msg} />
+                            ))}
+                            <div
+                                style={{ float: "left", clear: "both" }}
+                                ref={(el) => {
+                                    this.messagesEnd = el;
+                                }}
+                            ></div>
+                        </div>
+                        <div className="send-section">
+                            <div className="form-contain">
+                                <div className="form-input">
+                                    <TextField
+                                        value={this.state.text}
+                                        name="text"
+                                        label="Message"
+                                        variant="outlined"
+                                        required={true}
+                                        onChange={this.handleChange}
+                                        placeholder="Type here"
+                                        autoFocus={true}
+                                        fullWidth={true}
+                                        inputRef={this.textInput}
+                                        onKeyPress={(event) => {
+                                            if (event.charCode === 13) {
+                                                this.handleSend();
+                                            }
+                                        }}
+                                        autoComplete="off"
+                                    />
+                                </div>
+                                <div className="form-send">
+                                    <SendButton handleSend={this.handleSend} />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
+            ) : (
+                <div className="auth">Access Forbidden</div>
+            );
+        else return <Loader msg="Fetching your chats" />;
     }
 }
 

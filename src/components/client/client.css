@@ -4,18 +4,19 @@
 
 .chat-page {
     display: flex;
-    height: 100vh;
+    height: 92.5vh;
 }
 
 .sidebar {
     flex: 0 0 20%;
-    background-color: #dfe6e9;
-    text-transform: uppercase;
-    font-size: 3rem;
+    background-color: #d8b490;
     text-align: center;
     font-weight: 100;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* box-shadow: 10px 2px 20px #000; */
 }
 
 .contain {
@@ -30,12 +31,13 @@
     padding-left: 30%;
     flex: 0 0 85%;
     overflow-y: scroll;
-    
+    background-image: url("./chat.jpeg");
+    background-size: 1500px;
 }
 
 .send-section {
     flex: 1;
-    background-color: #dfe6e9;
+    background-color: #fce6ca;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,6 +52,7 @@
 .form-input {
     flex: 0 0 80%;
     margin-left: 5%;
+    background-color: #fff;
 }
 
 .form-send {
@@ -77,6 +80,7 @@
 
 .actual-image {
     width: 100%;
+    height: 100%;
 }
 
 .active-name {
@@ -84,4 +88,47 @@
     font-size: 1rem;
     letter-spacing: 1px;
     font-weight: 600;
+}
+.sidebar-image {
+    justify-self: flex-end;
+}
+
+.sidebar-text {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 1rem;
+    display: flex;
+}
+.sidebar-icon {
+    margin-right: 1rem;
+}
+
+.sidebar-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 10%;
+    border: 2px solid #fff;
+    padding: 1rem;
+    /* color: #fff; */
+}
+
+.sidebar-msg-text {
+    /* color: #fff; */
+    font-weight: 600;
+}
+
+.extra-info {
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.auth {
+    font-weight: 500;
+    font-size: 3rem;
+    color: red;
+    margin: 2rem;
 }
