@@ -46,7 +46,7 @@ function Home(props) {
                     <Typography variant="h6" className={classes.title}>
                         Chitter Chatter
                     </Typography>
-                    {props.token === "" && (
+                    {!props.token && (
                         <Button
                             color="inherit"
                             onClick={() => history.push("/sendOTP")}
@@ -54,7 +54,7 @@ function Home(props) {
                             Register
                         </Button>
                     )}
-                    {props.token === "" && (
+                    {!props.token && (
                         <Button
                             color="inherit"
                             onClick={() => history.push("/login")}
@@ -62,12 +62,12 @@ function Home(props) {
                             Login
                         </Button>
                     )}
-                    {props.token !== "" && (
+                    {props.token && (
                         <Typography variant="h6" className={classes.title2}>
                             Hi {localStorage.getItem("username")}
                         </Typography>
                     )}
-                    {props.token !== "" && (
+                    {props.token && (
                         <Button
                             color="inherit"
                             onClick={() => history.push("/logout")}
@@ -75,7 +75,7 @@ function Home(props) {
                             Logout
                         </Button>
                     )}
-                    {props.token !== "" && (
+                    {props.token && (
                         <Button
                             color="inherit"
                             onClick={() => history.push("/allUsers")}

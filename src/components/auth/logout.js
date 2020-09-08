@@ -28,9 +28,9 @@ function Logout(props) {
             return;
         }
         console.log(res.data);
-        localStorage.setItem("authToken", "");
-        localStorage.setItem("username", "");
-        localStorage.setItem("roomId", "");
+        localStorage.setItem("authToken", null);
+        localStorage.setItem("username", null);
+        localStorage.setItem("roomId", null);
         props.setToken(localStorage.getItem("authToken"));
         history.push("/");
     };
