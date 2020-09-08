@@ -23,11 +23,16 @@ function AllUsers() {
     const history = useHistory();
     const fetchUsers = async () => {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/allUsers", {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            },
-        });
+        const res = await axios.get(
+            "https://sgbtech96-chit-auth-server.herokuapp.com/allUsers",
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                        "authToken"
+                    )}`,
+                },
+            }
+        );
         if (res.data.error) {
             setLoading(false);
             setAuth(false);
@@ -43,7 +48,7 @@ function AllUsers() {
     const handleClick = async (name) => {
         setLoading(true);
         const res = await axios.post(
-            "http://localhost:5000/room",
+            "https://sgbtech96-chit-chat-server.herokuapp.com/room",
 
             {
                 us1: localStorage.getItem("username"),

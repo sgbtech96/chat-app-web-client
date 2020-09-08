@@ -50,7 +50,9 @@ class Client extends Component {
     }
 
     async componentDidMount() {
-        socket = socketIOClient("http://localhost:5000/");
+        socket = socketIOClient(
+            "https://sgbtech96-chit-chat-server.herokuapp.com/"
+        );
         console.log("did mount");
         socket.on("connect", async () => {
             console.log("hello socket");
@@ -59,7 +61,7 @@ class Client extends Component {
                 room: this.state.roomId,
             });
             const res = await axios.get(
-                `http://localhost:5000/chats/${this.state.roomId}`,
+                `https://sgbtech96-chit-chat-server.herokuapp.com/chats/${this.state.roomId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(

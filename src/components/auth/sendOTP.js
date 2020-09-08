@@ -28,9 +28,12 @@ function SendOTP(props) {
         e.preventDefault();
         sessionStorage.setItem("email", email);
         setLoading(true);
-        const res = await axios.post("http://localhost:8000/sendOTPe", {
-            email: sessionStorage.getItem("email"),
-        });
+        const res = await axios.post(
+            "https://sgbtech96-chit-auth-server.herokuapp.com/sendOTPe",
+            {
+                email: sessionStorage.getItem("email"),
+            }
+        );
         const { msg, error } = res.data;
         if (error) {
             setLoading(false);

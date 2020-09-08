@@ -13,11 +13,16 @@ function Logout(props) {
     const [loading, setLoading] = useState(true);
     const [auth, setAuth] = useState(true);
     const leave = async () => {
-        const res = await axios.get("http://localhost:8000/logout", {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            },
-        });
+        const res = await axios.get(
+            "https://sgbtech96-chit-auth-server.herokuapp.com/logout",
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                        "authToken"
+                    )}`,
+                },
+            }
+        );
         if (res.data.error) {
             setAuth(false);
             return;

@@ -26,10 +26,13 @@ function VerifyOTP(props) {
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        const res = await axios.post("http://localhost:8000/verifyOTPe", {
-            email: sessionStorage.getItem("email"),
-            otp,
-        });
+        const res = await axios.post(
+            "https://sgbtech96-chit-auth-server.herokuapp.com/verifyOTPe",
+            {
+                email: sessionStorage.getItem("email"),
+                otp,
+            }
+        );
         const { msg, error } = res.data;
         setLoading(false);
         if (error) {

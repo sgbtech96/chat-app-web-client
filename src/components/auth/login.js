@@ -17,10 +17,13 @@ function Login(props) {
         setLoading(true);
         e.preventDefault();
         console.log("hello");
-        const res = await axios.post("http://localhost:8000/login", {
-            username,
-            password,
-        });
+        const res = await axios.post(
+            "https://sgbtech96-chit-auth-server.herokuapp.com/login",
+            {
+                username,
+                password,
+            }
+        );
         const { error, msg, token } = res.data;
         const usernam = res.data.username;
         setLoading(false);

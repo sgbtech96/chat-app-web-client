@@ -17,12 +17,15 @@ function Register(props) {
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        const res = await axios.post("http://localhost:8000/register", {
-            email: sessionStorage.getItem("email"),
-            username,
-            password,
-            confirmPassword,
-        });
+        const res = await axios.post(
+            "https://sgbtech96-chit-auth-server.herokuapp.com/register",
+            {
+                email: sessionStorage.getItem("email"),
+                username,
+                password,
+                confirmPassword,
+            }
+        );
         const { error, msg } = res.data;
         setLoading(false);
         if (error) {
