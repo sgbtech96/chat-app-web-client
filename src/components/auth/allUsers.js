@@ -68,7 +68,7 @@ function AllUsers() {
         history.push("/client");
     };
     useEffect(() => {
-        localStorage.setItem("roomId", null);
+        localStorage.removeItem("roomId");
         fetchUsers();
     }, []);
     if (auth === false) return <div className="auth">Access Forbidden</div>;
