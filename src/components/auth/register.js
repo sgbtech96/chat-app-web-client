@@ -33,6 +33,7 @@ function Register(props) {
         } else {
             setErrorMsg("");
             console.log(msg);
+            sessionStorage.removeItem("email");
             history.push("/login");
         }
     };
