@@ -47,6 +47,8 @@
     width: 40%;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     background-color: #fff;
+    height: 80%;
+    overflow-y: scroll;
 }
 .all-users-head {
     font-weight: 500;
@@ -62,6 +64,7 @@
 }
 
 .info {
+    color: #fff;
     width: 55vh;
     display: flex;
     justify-content: space-between;

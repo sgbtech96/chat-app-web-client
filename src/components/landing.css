@@ -1,4 +1,43 @@
 .landing {
     display: inline-block;
-    margin: 2rem;
+    /* background-image: linear-gradient(
+            rgba(16, 29, 44, 0.93),
+            rgba(16, 29, 44, 0.93)
+        ),
+        url(./back.jpeg);
+    background-size: 1500px; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.landing-heading {
+    margin-top: 5%;
+    font-size: 5rem;
+    font-weight: 300;
+    color: #fff;
+}
+.landing-description {
+    margin-top: 2%;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: auto;
+}
+.creator-name {
+    color: #fff;
+    margin-bottom: 1%;
+    letter-spacing: 0.2rem;
+}
+
+.creator-link {
+    color: #fff;
+    margin-bottom: 6%;
+    letter-spacing: 0.2rem;
+}
+
+.linker {
+    text-decoration: none;
+    color: #fff;
 }

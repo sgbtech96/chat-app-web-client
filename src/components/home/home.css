@@ -11,7 +11,11 @@
 
 .below-container {
     flex: 1;
-    background-color: #d8b490;
+    /* background-image: linear-gradient(
+            rgba(16, 29, 44, 0.93),
+            rgba(16, 29, 44, 0.93)
+        ),
+        url(../img/hero.jpeg); */
 }
 
 .complete-wrapper {
@@ -19,4 +23,10 @@
     /* background-color: orangered; */
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(
+            rgba(16, 29, 44, 0.93),
+            rgba(16, 29, 44, 0.93)
+        ),
+        url(../back.jpeg);
+    background-size: 1500px;
 }
