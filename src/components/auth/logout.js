@@ -14,7 +14,7 @@ function Logout(props) {
     const [auth, setAuth] = useState(true);
     const leave = async () => {
         const res = await axios.get(
-            "https://sgbtech96-chit-auth-server.herokuapp.com/logout",
+            "https://sgbtech96-auth-chat-server.herokuapp.com/logout",
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem(

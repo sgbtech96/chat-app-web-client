@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import Loader from "../loader";
+import "./index.css";
+import "../home/home.css";
 
 function Login(props) {
     const [username, setUsername] = useState("");
@@ -18,7 +20,7 @@ function Login(props) {
         e.preventDefault();
         console.log("hello");
         const res = await axios.post(
-            "https://sgbtech96-chit-auth-server.herokuapp.com/login",
+            "https://sgbtech96-auth-chat-server.herokuapp.com/login",
             {
                 username,
                 password,
@@ -42,6 +44,9 @@ function Login(props) {
         <Loader msg="Logging in" />
     ) : (
         <div className="outer-container below-container">
+            <div className="info">
+                <div className="info-text">Login with your credentials</div>
+            </div>
             <Box boxShadow={2}>
                 <div className="inner-container">
                     <form onSubmit={handleSubmit} autoComplete="off">

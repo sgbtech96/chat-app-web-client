@@ -12,7 +12,6 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 import Chat from "./chat";
 import axios from "axios";
-import headers from "./headers";
 import "../home/home.css";
 import Loader from "../loader";
 
@@ -30,11 +29,6 @@ class Client extends Component {
             loading: true,
             auth: true,
         };
-        // if(window.performance) {
-        //     if(performance.navigation.type == 1) {
-        //         socket.emit('leave', {roomId: this.state.roomId})
-        //     }
-        // }
         this.handleSend = this.handleSend.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
@@ -51,7 +45,7 @@ class Client extends Component {
 
     async componentDidMount() {
         socket = socketIOClient(
-            "https://sgbtech96-chit-chat-server.herokuapp.com/"
+            "https://sgbtech96-auth-chat-server.herokuapp.com/"
         );
         console.log("did mount");
         socket.on("connect", async () => {
@@ -61,7 +55,7 @@ class Client extends Component {
                 room: this.state.roomId,
             });
             const res = await axios.get(
-                `https://sgbtech96-chit-chat-server.herokuapp.com/chats/${this.state.roomId}`,
+                `https://sgbtech96-auth-chat-server.herokuapp.com/chats/${this.state.roomId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -107,14 +101,6 @@ class Client extends Component {
                 allMessages: updatedMessages,
             });
         });
-        // socket.on('updateActive', async () => {
-        //     console.log('hello chk')
-        //     const res = await axios.get(`http://localhost:3000/mychat/${this.state.roomId}`, headers)
-        //     const activeUsersUpdated = res.data.People
-        //     this.setState({
-        //         activeUsers: activeUsersUpdated
-        //     })
-        // })
     }
 
     handleChange(event) {
@@ -170,7 +156,7 @@ class Client extends Component {
                                 <LockIcon />
                             </div>
                             <div className="sidebar-msg-text">
-                                This communication is end-to-end encrypted
+                                This communication is end-to-end
                             </div>
                         </div>
                         <div className="extra-info">

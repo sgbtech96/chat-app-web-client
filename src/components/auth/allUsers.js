@@ -24,7 +24,7 @@ function AllUsers() {
     const fetchUsers = async () => {
         setLoading(true);
         const res = await axios.get(
-            "https://sgbtech96-chit-auth-server.herokuapp.com/allUsers",
+            "https://sgbtech96-auth-chat-server.herokuapp.com/allUsers",
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem(
@@ -48,7 +48,7 @@ function AllUsers() {
     const handleClick = async (name) => {
         setLoading(true);
         const res = await axios.post(
-            "https://sgbtech96-chit-chat-server.herokuapp.com/room",
+            "https://sgbtech96-auth-chat-server.herokuapp.com/room",
 
             {
                 us1: localStorage.getItem("username"),

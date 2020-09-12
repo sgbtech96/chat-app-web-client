@@ -6,6 +6,8 @@ import Alert from "@material-ui/lab/Alert";
 import Box from "@material-ui/core/Box";
 import Loader from "../loader";
 import { useHistory } from "react-router-dom";
+import "./index.css";
+import "../home/home.css";
 
 function Register(props) {
     const [username, setUsername] = useState("");
@@ -18,7 +20,7 @@ function Register(props) {
         setLoading(true);
         e.preventDefault();
         const res = await axios.post(
-            "https://sgbtech96-chit-auth-server.herokuapp.com/register",
+            "https://sgbtech96-auth-chat-server.herokuapp.com/register",
             {
                 email: sessionStorage.getItem("email"),
                 username,
@@ -41,6 +43,9 @@ function Register(props) {
         <Loader msg="Setting up your account" />
     ) : (
         <div className="outer-container below-container">
+            <div className="info">
+                <div className="info-text">Set up your credentials</div>
+            </div>
             <Box boxShadow={2}>
                 <div className="inner-container">
                     <form onSubmit={handleSubmit} autoComplete="off">

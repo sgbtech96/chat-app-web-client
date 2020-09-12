@@ -64,7 +64,7 @@ function Home(props) {
                     )}
                     {props.token && (
                         <Typography variant="h6" className={classes.title2}>
-                            Hi {localStorage.getItem("username")}
+                            Hi {localStorage.getItem("username")}!
                         </Typography>
                     )}
                     {props.token && (

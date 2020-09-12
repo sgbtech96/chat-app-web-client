@@ -27,7 +27,7 @@ function VerifyOTP(props) {
         setLoading(true);
         e.preventDefault();
         const res = await axios.post(
-            "https://sgbtech96-chit-auth-server.herokuapp.com/verifyOTPe",
+            "https://sgbtech96-auth-chat-server.herokuapp.com/verifyOtp",
             {
                 email: sessionStorage.getItem("email"),
                 otp,
