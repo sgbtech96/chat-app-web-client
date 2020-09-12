@@ -15,7 +15,7 @@ Your previous chats would not be lost, and yes the entire chat service is **behi
 9) You will be presented with a **great user interface to chat**.
 10) Try logging out and logging in again.
 11) Database to our rescue, your **previous chats are conserved**.
-12) Try visiting secure routes after logging out, access would be forbidden.
+12) Try visiting **secure routes** after logging out, **access** would be **forbidden**.
 
 ### Technology Stack
 React.js, socket-io-client
