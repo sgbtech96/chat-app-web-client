@@ -1,7 +1,7 @@
 
 You can learn more in the []()
 
-### Breif introduction
+### Brief introduction
 
 This is the **web-client** of my **Cross-Platform End-to-End Messaging Service**, it lets you chat end to end with your besties!
 Your previous chats would not be lost, and yes the entire chat service is **behind the auth**.
@@ -18,3 +18,4 @@ Your previous chats would not be lost, and yes the entire chat service is **behi
 9) You will be presented with a **great user interface to chat**.
 10) Try logging out and logging in again.
 11) Database to our rescue, your **previous chats are conserved**.
+12) Try visiting secure routes after logging out, access would be forbidden. 
