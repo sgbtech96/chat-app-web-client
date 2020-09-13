@@ -47,9 +47,7 @@ class Client extends Component {
         socket = socketIOClient(
             "https://sgbtech96-auth-chat-server.herokuapp.com/"
         );
-        console.log("did mount");
         socket.on("connect", async () => {
-            console.log("hello socket");
             socket.emit("join", {
                 username: this.state.username,
                 room: this.state.roomId,
@@ -64,7 +62,6 @@ class Client extends Component {
                     },
                 }
             );
-            console.log(res.data);
             if (res.data.error) {
                 this.setState({
                     loading: false,
@@ -84,18 +81,15 @@ class Client extends Component {
                     allMessages: res.data.chats,
                 },
                 () => {
-                    console.log(this.state.allMessages);
                     this.setState({
                         loading: false,
                         auth: true,
                     });
                 }
             );
-            console.log(this.state.allMessages);
             this.scrollToBottom();
         });
         socket.on("newMessage", (message) => {
-            // console.log(message)
             const updatedMessages = [...this.state.allMessages, message];
             this.setState({
                 allMessages: updatedMessages,
@@ -119,9 +113,7 @@ class Client extends Component {
                 room: this.state.roomId,
                 username: this.state.username,
             },
-            () => {
-                console.log("callback check");
-            }
+            () => {}
         );
         this.setState(
             {

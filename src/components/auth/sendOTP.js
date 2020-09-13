@@ -41,7 +41,6 @@ function SendOTP(props) {
         } else {
             setLoading(false);
             setErrorMsg("");
-            console.log(msg);
             history.push("/verifyOTP");
         }
     };

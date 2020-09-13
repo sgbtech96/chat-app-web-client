@@ -18,7 +18,6 @@ function Login(props) {
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        console.log("hello");
         const res = await axios.post(
             "https://sgbtech96-auth-chat-server.herokuapp.com/login",
             {
@@ -33,7 +32,6 @@ function Login(props) {
             setErrorMsg(error);
         } else {
             setErrorMsg("");
-            console.log(msg, token);
             localStorage.setItem("authToken", token);
             localStorage.setItem("username", usernam);
             props.setToken(localStorage.getItem("authToken"));

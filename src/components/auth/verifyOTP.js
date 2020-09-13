@@ -39,7 +39,6 @@ function VerifyOTP(props) {
             setErrorMsg(error);
         } else {
             setErrorMsg("");
-            console.log(msg);
             history.push("/register");
         }
     };

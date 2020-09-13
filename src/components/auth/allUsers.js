@@ -38,7 +38,6 @@ function AllUsers() {
             setAuth(false);
             return;
         }
-        console.log(res.data);
         const tmp = res.data.filter(
             (usr) => usr.username !== localStorage.getItem("username")
         );
@@ -63,7 +62,6 @@ function AllUsers() {
             }
         );
         setLoading(false);
-        console.log(res.data);
         localStorage.setItem("roomId", res.data.roomId);
         history.push("/client");
     };

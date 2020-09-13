@@ -34,7 +34,6 @@ function Register(props) {
             setErrorMsg(error);
         } else {
             setErrorMsg("");
-            console.log(msg);
             sessionStorage.removeItem("email");
             history.push("/login");
         }
